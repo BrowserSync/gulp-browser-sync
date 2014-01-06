@@ -12,13 +12,13 @@ For a full list of features, please visit [https://github.com/shakyShane/browser
 
 First, install `gulp-browser-sync` as a development dependency:
 
-```
+```shell
 npm install gulp-browser-sync --save-dev
 ```
 
 Then, add it to your `gulpfile.js`:
 
-```
+```js
 var browserSync = require('gulp-browser-sync');
 
 gulp.task('browser-sync', function() {
@@ -37,13 +37,13 @@ Default: `null`
 
 Provide file watching patterns here (only the types of files browser-sync would care about, such as compiled CSS)
 
-```
+```js
 // single file pattern
 browserSync('**/*.css');
-    
+
 // Multiple patterns as array
 browserSync(['**/*.css', '*.html']);
-    
+
 ```
 
 ####options
@@ -56,7 +56,7 @@ There's a [full list of available options](https://github.com/shakyShane/browser
 
 **Static server**
 
-```
+```js
 // Watch CSS files and launch a static-server in the root directory
 browserSync(['css/*.css'], {
 	server: {
@@ -68,7 +68,7 @@ browserSync(['css/*.css'], {
 
 **Proxy**
 
-```
+```js
 // Watch CSS files and use the proxy with your own server.
 browserSync(['css/*.css'], {
 	proxy: {
@@ -83,7 +83,7 @@ browserSync(['css/*.css'], {
 
 Using the config below, any changes to the `scss` files would trigger the `sass` task that will compile to `CSS`. Then, Browser-Sync notices that the CSS file has been changed & will live-update all connected browsers/devices.
 
-```
+```js
 var gulp = require('gulp');
 var browserSync = require('gulp-browser-sync');
 var sass = require('gulp-sass');
