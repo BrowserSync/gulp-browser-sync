@@ -79,13 +79,16 @@ browserSync(['css/*.css'], {
 
 ```
 
-**Using along-side other watch tasks**
+**Using along-side other watch tasks (SASS)**
+
+Using the config below, any changes to the `scss` files would trigger the `sass` task that will compile to `CSS`. Then, Browser-Sync notices that the CSS file has been changed & will live-update all connected browsers/devices.
 
 ```
 var gulp = require('gulp');
 var browserSync = require('gulp-browser-sync');
 var sass = require('gulp-sass');
 
+// Browser-sync task, only cares about compiled CSS
 gulp.task('browser-sync', function() {
     browserSync("css/*.css", {
         server: {
@@ -94,12 +97,14 @@ gulp.task('browser-sync', function() {
     });
 });
 
+// Sass task, will run when any SCSS files change.
 gulp.task('sass', function () {
     gulp.src('scss/styles.scss')
         .pipe(sass({includePaths: ['scss']}))
         .pipe(gulp.dest('css'));
 });
 
+// Default task to be run with `gulp`
 gulp.task('default', function() {
     gulp.run('sass', 'browser-sync');
     gulp.watch("scss/*.scss", function() {
@@ -108,6 +113,9 @@ gulp.task('default', function() {
 });
 
 ```
+
+###Screencasts
+Coming soon. If you want to see anything specific covered in the screencasts, please ask me [@shaneOsbourne](https://www.twitter.com/shaneosbourne)
 
 
 ##Support
