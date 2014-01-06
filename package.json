@@ -1,7 +1,7 @@
 {
   "name": "gulp-browser-sync",
   "description": "Gulp Task for keeping multiple browsers & devices in sync when building websites.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "https://github.com/shakyShane/gulp-browser-sync",
   "repository": {
     "type": "git",
