@@ -1,0 +1,48 @@
+{
+  "name": "gulp-browser-sync",
+  "description": "Gulp Task for keeping multiple browsers & devices in sync when building websites.",
+  "version": "0.0.1",
+  "homepage": "https://github.com/shakyShane/gulp-browser-sync",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/shakyShane/gulp-browser-sync"
+  },
+  "author": {
+    "name": "Shane Osbourne",
+    "email": "shakyshane@gmail.com",
+    "url": "http://shakyshane.com"
+  },
+  "main": "./index.js",
+  "keywords": [
+    "gulpplugin"
+  ],
+  "dependencies": {
+    "browser-sync": "~0.4.8",
+    "lodash": "~2.4.1"
+  },
+  "devDependencies": {
+    "mocha": "~1.16.2",
+    "chai": "~1.8.1",
+    "sinon": "~1.7.3",
+    "gulp": "~3.2.4",
+    "gulp-sass": "*",
+    "gulp-less": "*"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "engines": {
+    "node": ">= 0.4.0"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ],
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/shakyShane/gulp-browser-sync/issues"
+  },
+  "_id": "gulp-browser-sync@0.0.1",
+  "_from": "gulp-browser-sync@"
+}
