@@ -19,7 +19,7 @@ npm install browser-sync --save-dev
 Then, use it within `gulpfile.js`:
 
 ```js
-var browserSync = require('S');
+var browserSync = require('browser-sync');
 
 gulp.task('browser-sync', function() {
     browserSync.init('**/*.css');
