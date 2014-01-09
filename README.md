@@ -1,6 +1,6 @@
-# gulp-browser-sync [![Build Status](https://travis-ci.org/shakyShane/gulp-browser-sync.png?branch=master)](https://travis-ci.org/shakyShane/gulp-browser-sync)
+# Browser Sync + Gulp
 
-> A gulp task for the [browser-sync](https://github.com/shakyShane/browser-sync) module.
+> How to use the [browser-sync](https://github.com/shakyShane/browser-sync) module with gulp.
 
 Follow [@browserSync](http://www.twitter.com/browserSync) for news & updates.
 
@@ -10,24 +10,24 @@ For a full list of features, please visit [https://github.com/shakyShane/browser
 
 ##Usage
 
-First, install `gulp-browser-sync` as a development dependency:
+First, install `browser-sync` as a development dependency:
 
 ```shell
-npm install gulp-browser-sync --save-dev
+npm install browser-sync --save-dev
 ```
 
-Then, add it to your `gulpfile.js`:
+Then, use it within `gulpfile.js`:
 
 ```js
-var browserSync = require('gulp-browser-sync');
+var browserSync = require('S');
 
 gulp.task('browser-sync', function() {
-    browserSync('**/*.css');
+    browserSync.init('**/*.css');
 });
 ```
 
 ##API
-###browserSync( filePatterns, options );
+###browserSync.init( filePatterns, options );
 
 ####filePatterns
 
@@ -39,10 +39,10 @@ Provide file watching patterns here (only the types of files browser-sync would 
 
 ```js
 // single file pattern
-browserSync('**/*.css');
+browserSync.init('**/*.css');
 
 // Multiple patterns as array
-browserSync(['**/*.css', '*.html']);
+browserSync.init(['**/*.css', '*.html']);
 
 ```
 
@@ -58,7 +58,7 @@ There's a [full list of available options](https://github.com/shakyShane/browser
 
 ```js
 // Watch CSS files and launch a static-server in the root directory
-browserSync(['css/*.css'], {
+browserSync.init(['css/*.css'], {
 	server: {
 		baseDir: './'
 	}
@@ -70,7 +70,7 @@ browserSync(['css/*.css'], {
 
 ```js
 // Watch CSS files and use the proxy with your own server.
-browserSync(['css/*.css'], {
+browserSync.init(['css/*.css'], {
 	proxy: {
 		host: 'mylocal.dev',
 		port: '8000'
@@ -85,12 +85,12 @@ Using the config below, any changes to the `scss` files would trigger the `sass`
 
 ```js
 var gulp = require('gulp');
-var browserSync = require('gulp-browser-sync');
+var browserSync = require('browser-sync');
 var sass = require('gulp-sass');
 
 // Browser-sync task, only cares about compiled CSS
 gulp.task('browser-sync', function() {
-    browserSync("css/*.css", {
+    browserSync.init("css/*.css", {
         server: {
             baseDir: "./"
         }
