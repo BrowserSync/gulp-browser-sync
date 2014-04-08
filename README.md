@@ -68,6 +68,10 @@ browserSync.init(['css/*.css'], {
 
 **Proxy**
 
+Depending on what version of Browser Sync you're using, you will need to alter this configuration slightly.
+To check what version you're running, use: `npm view browser-sync version`
+
+When running Browser Sync versions prior to 0.7.0, use the following:
 ```js
 // Watch CSS files and use the proxy with your own server.
 browserSync.init(['css/*.css'], {
@@ -76,7 +80,14 @@ browserSync.init(['css/*.css'], {
 		port: '8000'
 	}
 });
+```
 
+When running Browser Sync versions of 0.7.0 or higher, use the following:
+```js
+// Watch CSS files and use the proxy with your own server.
+browserSync.init(['css/*.css'], {
+	proxy: 'mylocal.dev:8000'
+});
 ```
 
 **Using along-side other watch tasks (SASS)**
