@@ -34,10 +34,20 @@ gulp.task('browser-sync', function() {
 // or...
 
 
-// Proxy to existing vhost
+// Proxy to existing vhost (version 0.7.0 & greater)
 gulp.task('browser-sync', function() {
     browserSync.init(null, {
       proxy: "yourlocal.dev"
+    });
+});
+
+// Proxy to existing vhost (before version 0.7.0) * Seriously? time to upgrade.
+gulp.task('browser-sync', function() {
+    browserSync.init(null, {
+      proxy: {
+        host: "yourlocal.dev",
+        port: 80
+      }
     });
 });
 
@@ -87,10 +97,6 @@ gulp.task('default', ['sass', 'browser-sync'], function () {
 Sometimes you might just want to reload the page completely (for example, after processing a bunch of JS files) - you can do that
 by passing `once` as an option. This will stop `reload` being call multiple times.
 
-Depending on what version of Browser Sync you're using, you will need to alter this configuration slightly.
-To check what version you're running, use: `npm view browser-sync version`
-
-When running Browser Sync versions prior to 0.7.0, use the following:
 ```js
 
 // start server
@@ -117,19 +123,10 @@ gulp.task('default', ['browser-sync'], function () {
 });
 ```
 
-When running Browser Sync versions of 0.7.0 or higher, use the following:
-```js
-// Watch CSS files and use the proxy with your own server.
-browserSync.init(['css/*.css'], {
-	proxy: 'mylocal.dev:8000'
-});
-```
-
 **Reloading manually**
 
 If the streams support doesn't suit your needs, you can fire the reload method manually by wrapping it in a task.
-This example will compile/auto-inject `CSS` when compiled (just as before)
-but when `HTML` files are changed, the browsers will be reloaded instead.
+This example will compile & auto-inject `CSS` just as before, but when `HTML` files are changed, the browsers will be reloaded instead.
 
 ```js
 // Start the server
@@ -161,7 +158,6 @@ gulp.task('default', ['browser-sync'], function () {
 });
 
 ```
-
 
 ###Screencasts
 Coming soon. If you want to see anything specific covered in the screencasts, please ask me [@shaneOsbourne](https://www.twitter.com/shaneosbourne)
