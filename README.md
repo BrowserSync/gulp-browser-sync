@@ -44,9 +44,9 @@ gulp.task('browser-sync', function() {
 ```
 There's a [full list of available options](https://github.com/shakyShane/browser-sync/wiki/Working-with-a-Config-File) on the module's repo.
 
-#NOTE: at least version 0.8.0 is required for streams support!
+**NOTE: at least version 0.8.0 is required for streams support!**
 
-#Auto reload & CSS injecting
+###Auto reload & CSS injecting
 Streams are now supported in BrowserSync, so you can call `reload` when all your tasks are complete & all browsers will be informed of the changes.
 
 **Gulp + SASS + CSS Injecting**
