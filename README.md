@@ -87,6 +87,10 @@ gulp.task('default', ['sass', 'browser-sync'], function () {
 Sometimes you might just want to reload the page completely (for example, after processing a bunch of JS files) - you can do that
 by passing `once` as an option. This will stop `reload` being call multiple times.
 
+Depending on what version of Browser Sync you're using, you will need to alter this configuration slightly.
+To check what version you're running, use: `npm view browser-sync version`
+
+When running Browser Sync versions prior to 0.7.0, use the following:
 ```js
 
 // start server
@@ -111,7 +115,14 @@ gulp.task('js', function () {
 gulp.task('default', ['browser-sync'], function () {
     gulp.watch("js/*.js", ['js']);
 });
+```
 
+When running Browser Sync versions of 0.7.0 or higher, use the following:
+```js
+// Watch CSS files and use the proxy with your own server.
+browserSync.init(['css/*.css'], {
+	proxy: 'mylocal.dev:8000'
+});
 ```
 
 **Reloading manually**
