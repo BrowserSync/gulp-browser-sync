@@ -16,92 +16,63 @@ First, install `browser-sync` as a development dependency:
 npm install browser-sync --save-dev
 ```
 
-Then, use it within `gulpfile.js`:
+Then, use it within `gulpfile.js`: (example shows with gulp-sass)
 
 ```js
 var browserSync = require('browser-sync');
 
+// Static server
 gulp.task('browser-sync', function() {
-    browserSync.init('**/*.css');
+    browserSync.init(null, {
+      server: {
+        baseDir: "./"
+      }
+    });
 });
-```
 
-##API
-###browserSync.init( filePatterns, options );
 
-####filePatterns
+// or...
 
-Type: `String | Array`
 
-Default: `null`
-
-Provide file watching patterns here (only the types of files browser-sync would care about, such as compiled CSS)
-
-```js
-// single file pattern
-browserSync.init('**/*.css');
-
-// Multiple patterns as array
-browserSync.init(['**/*.css', '*.html']);
-
-```
-
-####options
-
-Type: `Object`
-
-Default: `null`
-
-There's a [full list of available options](https://github.com/shakyShane/browser-sync/wiki/Working-with-a-Config-File) on the module's repo, but below are just a few common use-cases to get you started.
-
-**Static server**
-
-```js
-// Watch CSS files and launch a static-server in the root directory
-browserSync.init(['css/*.css'], {
-	server: {
-		baseDir: './'
-	}
+// Proxy to existing vhost
+gulp.task('browser-sync', function() {
+    browserSync.init(null, {
+      proxy: "yourlocal.dev"
+    });
 });
 
 ```
+There's a [full list of available options](https://github.com/shakyShane/browser-sync/wiki/Working-with-a-Config-File) on the module's repo.
 
-**Proxy**
+#NOTE: at least version 0.8.0 is required for streams support!
 
-```js
-// Watch CSS files and use the proxy with your own server.
-browserSync.init(['css/*.css'], {
-	proxy: {
-		host: 'mylocal.dev',
-		port: '8000'
-	}
-});
+#Auto reload & CSS injecting
+Streams are now supported in BrowserSync, so you can call `reload` when all your tasks are complete & all browsers will be informed of the changes.
 
-```
+**Gulp + SASS + CSS Injecting**
 
-**Using along-side other watch tasks (SASS)**
-
-Using the config below, any changes to the `scss` files would trigger the `sass` task that will compile to `CSS`. Then, Browser-Sync notices that the CSS file has been changed & will live-update all connected browsers/devices.
+Because BrowserSync only cares about your CSS when it's finished compiling - make sure you call reload *after* `gulp.dest`
 
 ```js
 var gulp = require('gulp');
 var browserSync = require('browser-sync');
 var sass = require('gulp-sass');
 
-// Browser-sync task, only cares about compiled CSS
+// browser-sync task for starting the server.
 gulp.task('browser-sync', function() {
-    browserSync.init("css/*.css", {
+    browserSync.init(null, {
         server: {
             baseDir: "./"
         }
     });
 });
 
-// Sass task, will run when any SCSS files change.
+// Sass task, will run when any SCSS files change & BrowserSync will auto-update browsers
 gulp.task('sass', function () {
     gulp.src('scss/styles.scss')
         .pipe(sass({includePaths: ['scss']}))
-        .pipe(gulp.dest('css'));
+        .pipe(gulp.dest('css'))
+        .pipe(browserSync.reload({stream:true}));
 });
 
 // Default task to be run with `gulp`
@@ -110,6 +81,76 @@ gulp.task('default', ['sass', 'browser-sync'], function () {
 });
 
 ```
+
+**Browser Reloading**
+
+Sometimes you might just want to reload the page completely (for example, after processing a bunch of JS files) - you can do that
+by passing `once` as an option. This will stop `reload` being call multiple times.
+
+```js
+
+// start server
+gulp.task('browser-sync', function() {
+    browserSync.init(null, {
+        server: {
+            baseDir: "./"
+        }
+    });
+});
+
+// process JS files and reload all browsers when complete.
+gulp.task('js', function () {
+    gulp.src('js/*js')
+        .pipe(browserify())
+        .pipe(uglify())
+        .pipe(gulp.dest('dist/js'))
+        .pipe(browserSync.reload({stream:true, once: true}));
+});
+
+// use default task to lauch BrowserSync and watch JS files
+gulp.task('default', ['browser-sync'], function () {
+    gulp.watch("js/*.js", ['js']);
+});
+
+```
+
+**Reloading manually**
+
+If the streams support doesn't suit your needs, you can fire the reload method manually by wrapping it in a task.
+This example will compile/auto-inject `CSS` when compiled (just as before)
+but when `HTML` files are changed, the browsers will be reloaded instead.
+
+```js
+// Start the server
+gulp.task('browser-sync', function() {
+    browserSync.init(null, {
+        server: {
+            baseDir: "./"
+        }
+    });
+});
+
+// Compile SASS & auto-inject into browsers
+gulp.task('sass', function () {
+    gulp.src('scss/styles.scss')
+        .pipe(sass({includePaths: ['scss']}))
+        .pipe(gulp.dest('css'))
+        .pipe(browserSync.reload({stream:true}));
+});
+
+// Reload all Browsers
+gulp.task('bs-reload', function () {
+    browserSync.reload();
+});
+
+// Watch scss AND html files, doing different things with each.
+gulp.task('default', ['browser-sync'], function () {
+    gulp.watch("scss/*.scss", ['sass']);
+    gulp.watch("*.html", ['bs-reload']);
+});
+
+```
+
 
 ###Screencasts
 Coming soon. If you want to see anything specific covered in the screencasts, please ask me [@shaneOsbourne](https://www.twitter.com/shaneosbourne)

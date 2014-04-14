@@ -10,7 +10,7 @@ var sass = require('gulp-sass');
 
 // Browser-sync task, only cares about compiled CSS
 gulp.task('browser-sync', function() {
-    browserSync.init("css/*.css", {
+    browserSync.init(null, {
         server: {
             baseDir: "./"
         }
@@ -21,7 +21,8 @@ gulp.task('browser-sync', function() {
 gulp.task('sass', function () {
     gulp.src('scss/styles.scss')
         .pipe(sass({includePaths: ['scss']}))
-        .pipe(gulp.dest('css'));
+        .pipe(gulp.dest('css'))
+        .pipe(browserSync.reload({stream:true}));
 });
 
 // Default task to be run with `gulp`

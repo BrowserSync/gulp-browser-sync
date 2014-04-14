@@ -8,10 +8,7 @@ var browserSync = require('browser-sync');
 
 gulp.task('browser-sync', function() {
     browserSync.init("css/*.css", {
-        proxy: {
-            host: "mylocal.dev",
-            port: 8080
-        }
+        proxy: "myhost.dev"
     });
 });
 

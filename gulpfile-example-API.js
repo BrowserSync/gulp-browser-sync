@@ -11,11 +11,9 @@ var gulp = require('gulp');
 var browserSync = require('browser-sync');
 var sass = require('gulp-sass');
 
-var bs;
-
 // This BrowserSync task will start a server, but will NOT watch any files.
 gulp.task('browser-sync', function () {
-    bs = browserSync.init(null, {
+    browserSync.init(null, {
         server: {
             baseDir: "./"
         }
@@ -27,7 +25,7 @@ gulp.task('browser-sync', function () {
 gulp.task('default', ['browser-sync'], function () {
     gulp.watch('css/*.css', function (file) {
         if (file.type === "changed") {
-            bs.events.emit("file:changed", {path: file.path});
+          browserSync.reload(file.path)
         }
     });
 });
