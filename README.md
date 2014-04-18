@@ -16,9 +16,10 @@ First, install `browser-sync` as a development dependency:
 npm install browser-sync --save-dev
 ```
 
-Then, use it within `gulpfile.js`: (example shows with gulp-sass)
+Then, use it within `gulpfile.js`:
 
 ```js
+var gulp = require('gulp');
 var browserSync = require('browser-sync');
 
 // Static server
@@ -54,7 +55,7 @@ gulp.task('browser-sync', function() {
 ```
 There's a [full list of available options](https://github.com/shakyShane/browser-sync/wiki/Working-with-a-Config-File) on the module's repo.
 
-**NOTE: at least version 0.8.0 is required for the following examples!**
+##NOTE: at least version 0.8.0 is required for the following examples!##
 
 ###Auto reload & CSS injecting
 Streams are now supported in BrowserSync, so you can call `reload` when all your tasks are complete & all browsers will be informed of the changes.
