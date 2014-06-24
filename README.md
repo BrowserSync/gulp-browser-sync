@@ -92,7 +92,24 @@ gulp.task('default', ['sass', 'browser-sync'], function () {
 });
 
 ```
+**SASS & Source Maps**
 
+If you use [gulp-ruby-sass](https://www.npmjs.org/package/gulp-ruby-sass) with `sourcemap: true` option `*.css.map` file/files will be generated and after css injection browser will be reloaded. To prevent refreshing page after css injection use [gulp-filter](https://www.npmjs.org/package/gulp-filter) package.
+
+For example:
+```js
+//other necessary packages
+var filter = require('gulp-filter');
+
+gulp.task('sass', function () {
+    gulp.src('scss/styles.scss')
+        .pipe(sass({includePaths: ['scss']}))
+        .pipe(gulp.dest('css'))
+        .pipe(filter('**/*.css')) // Filtering stream to only css files
+        .pipe(browserSync.reload({stream:true}));
+});
+
+```
 **Browser Reloading**
 
 Sometimes you might just want to reload the page completely (for example, after processing a bunch of JS files) - you can do that
