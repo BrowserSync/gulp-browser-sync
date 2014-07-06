@@ -4,11 +4,11 @@
 
 Follow [@browserSync](http://www.twitter.com/browserSync) for news & updates.
 
-##About
+## About
 
 For a full list of features, please visit [https://github.com/shakyShane/browser-sync](https://github.com/shakyShane/browser-sync)
 
-##Usage
+## Usage
 
 First, install `browser-sync` as a development dependency:
 
@@ -25,39 +25,38 @@ var browserSync = require('browser-sync');
 // Static server
 gulp.task('browser-sync', function() {
     browserSync.init(null, {
-      server: {
-        baseDir: "./"
-      }
+        server: {
+            baseDir: "./"
+        }
     });
 });
 
-
 // or...
-
 
 // Proxy to existing vhost (version 0.7.0 & greater)
 gulp.task('browser-sync', function() {
     browserSync.init(null, {
-      proxy: "yourlocal.dev"
+        proxy: "yourlocal.dev"
     });
 });
 
 // Proxy to existing vhost (before version 0.7.0) * Seriously? time to upgrade.
 gulp.task('browser-sync', function() {
     browserSync.init(null, {
-      proxy: {
-        host: "yourlocal.dev",
-        port: 80
-      }
+        proxy: {
+            host: "yourlocal.dev",
+            port: 80
+        }
     });
 });
-
 ```
+
 There's a [full list of available options](https://github.com/shakyShane/browser-sync/wiki/Working-with-a-Config-File) on the module's repo.
 
-##NOTE: at least version 0.8.0 is required for the following examples!##
+## NOTE: at least version 0.8.0 is required for the following examples! ##
 
-###Auto reload & CSS injecting
+### Auto reload & CSS injecting
+
 Streams are now supported in BrowserSync, so you can call `reload` when all your tasks are complete & all browsers will be informed of the changes.
 
 **Gulp + SASS + CSS Injecting**
@@ -90,7 +89,25 @@ gulp.task('sass', function () {
 gulp.task('default', ['sass', 'browser-sync'], function () {
     gulp.watch("scss/*.scss", ['sass']);
 });
+```
 
+**SASS & Source Maps**
+
+If you use [gulp-ruby-sass](https://www.npmjs.org/package/gulp-ruby-sass) with `sourcemap: true` option `*.css.map` file/files will be generated and after css injection browser will be reloaded. To prevent refreshing page after css injection use [gulp-filter](https://www.npmjs.org/package/gulp-filter) package.
+
+For example:
+
+```js
+//other necessary packages
+var filter = require('gulp-filter');
+
+gulp.task('sass', function () {
+    gulp.src('scss/styles.scss')
+        .pipe(sass({includePaths: ['scss'], sourcemap: true}))
+        .pipe(gulp.dest('css'))
+        .pipe(filter('**/*.css')) // Filtering stream to only css files
+        .pipe(browserSync.reload({stream:true}));
+});
 ```
 
 **Browser Reloading**
@@ -99,7 +116,6 @@ Sometimes you might just want to reload the page completely (for example, after 
 by passing `once` as an option. This will stop `reload` being call multiple times.
 
 ```js
-
 // start server
 gulp.task('browser-sync', function() {
     browserSync.init(null, {
@@ -157,14 +173,14 @@ gulp.task('default', ['browser-sync'], function () {
     gulp.watch("scss/*.scss", ['sass']);
     gulp.watch("*.html", ['bs-reload']);
 });
-
 ```
 
-###Screencasts
+### Screencasts
+
 Coming soon. If you want to see anything specific covered in the screencasts, please ask me [@shaneOsbourne](https://www.twitter.com/shaneosbourne)
 
+## Support
 
-##Support
 If you've found Browser-sync useful and would like to contribute to its continued development & support, please feel free to send a donation of any size - it would be greatly appreciated!
 
 [![Support via Gittip](https://rawgithub.com/chris---/Donation-Badges/master/gittip.jpeg)](https://www.gittip.com/shakyshane)

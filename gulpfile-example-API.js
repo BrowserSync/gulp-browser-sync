@@ -25,7 +25,7 @@ gulp.task('browser-sync', function () {
 gulp.task('default', ['browser-sync'], function () {
     gulp.watch('css/*.css', function (file) {
         if (file.type === "changed") {
-          browserSync.reload(file.path)
+            browserSync.reload(file.path);
         }
     });
 });
