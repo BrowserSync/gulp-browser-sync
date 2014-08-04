@@ -7,13 +7,14 @@
  *   Shows how you can emit your own file-change events
  */
 
-var gulp = require('gulp');
 var browserSync = require('browser-sync');
-var sass = require('gulp-sass');
+var reload      = browserSync.reload;
+var gulp        = require('gulp');
+var sass        = require('gulp-sass');
 
 // This BrowserSync task will start a server, but will NOT watch any files.
 gulp.task('browser-sync', function () {
-    browserSync.init(null, {
+    browserSync({
         server: {
             baseDir: "./"
         }
@@ -25,7 +26,7 @@ gulp.task('browser-sync', function () {
 gulp.task('default', ['browser-sync'], function () {
     gulp.watch('css/*.css', function (file) {
         if (file.type === "changed") {
-            browserSync.reload(file.path);
+            reload(file.path);
         }
     });
 });

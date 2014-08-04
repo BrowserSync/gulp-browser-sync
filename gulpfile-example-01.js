@@ -4,13 +4,14 @@
  *  Watches & compiles SASS files
  *  Watches & injects CSS files
  */
-var gulp = require('gulp');
 var browserSync = require('browser-sync');
-var sass = require('gulp-sass');
+var reload      = browserSync.reload;
+var gulp        = require('gulp');
+var sass        = require('gulp-sass');
 
 // Browser-sync task, only cares about compiled CSS
 gulp.task('browser-sync', function() {
-    browserSync.init(null, {
+    browserSync({
         server: {
             baseDir: "./"
         }
@@ -22,7 +23,7 @@ gulp.task('sass', function () {
     gulp.src('scss/styles.scss')
         .pipe(sass({includePaths: ['scss']}))
         .pipe(gulp.dest('css'))
-        .pipe(browserSync.reload({stream:true}));
+        .pipe(reload({stream:true}));
 });
 
 // Default task to be run with `gulp`
