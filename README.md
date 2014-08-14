@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/shakyShane/gulp-browser-sync.png?label=ready&title=Ready)](https://waffle.io/shakyShane/gulp-browser-sync)
 # Browser Sync + Gulp
 
 > How to use the [browser-sync](https://github.com/shakyShane/browser-sync) module with gulp.
