@@ -8,6 +8,7 @@ var browserSync = require('browser-sync');
 var reload      = browserSync.reload;
 var gulp        = require('gulp');
 var sass        = require('gulp-sass');
+var filter      = require('gulp-filter');
 
 // Browser-sync task, only cares about compiled CSS
 gulp.task('browser-sync', function() {
@@ -19,10 +20,15 @@ gulp.task('browser-sync', function() {
 });
 
 // Sass task, will run when any SCSS files change.
+// --- !!! ----
+// Be sure to filter for css files to trigger stream reload,
+// otherwise you will get a full browser reload
+// --- !!! ---
 gulp.task('sass', function () {
     gulp.src('scss/styles.scss')
         .pipe(sass({includePaths: ['scss']}))
         .pipe(gulp.dest('css'))
+        .pipe(filter('**/*.css'))
         .pipe(reload({stream:true}));
 });
 
