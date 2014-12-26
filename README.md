@@ -1,7 +1,6 @@
-[![Stories in Ready](https://badge.waffle.io/shakyShane/gulp-browser-sync.png?label=ready&title=Ready)](https://waffle.io/shakyShane/gulp-browser-sync)
-# Browser Sync + Gulp
+#BrowserSync + Gulp
 
-> How to use the [browser-sync](https://github.com/shakyShane/browser-sync) module with gulp.
+> How to use the [BrowserSync](https://github.com/shakyShane/browser-sync) module with gulp.
 
 Follow [@browserSync](http://www.twitter.com/browserSync) for news & updates.
 
@@ -15,7 +14,7 @@ Please see the official [BrowserSync + Gulp Documentation](http://www.browsersyn
 which may no longer be supported, checkout the readme.old.md file)
 
 ##Support
-If you've found Browser-sync useful and would like to contribute to its continued development & support, please feel free to send a donation of any size - it would be greatly appreciated!
+If you've found BrowserSync to be useful and would like to contribute to its continued development & support, please feel free to send a donation of any size - it would be greatly appreciated!
 
 [![Support via Gittip](https://rawgithub.com/chris---/Donation-Badges/master/gittip.jpeg)](https://www.gittip.com/shakyshane)
 [![Support via PayPal](https://rawgithub.com/chris---/Donation-Badges/master/paypal.jpeg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=shakyshane%40gmail%2ecom&lc=US&item_name=browser%2dsync)

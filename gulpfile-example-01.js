@@ -20,16 +20,12 @@ gulp.task('browser-sync', function() {
 });
 
 // Sass task, will run when any SCSS files change.
-// --- !!! ----
-// Be sure to filter for css files to trigger stream reload,
-// otherwise you will get a full browser reload
-// --- !!! ---
 gulp.task('sass', function () {
     return gulp.src('scss/styles.scss')
-        .pipe(sass({includePaths: ['scss']}))
-        .pipe(gulp.dest('css'))
-        .pipe(filter('**/*.css'))
-        .pipe(reload({stream:true}));
+        .pipe(sass({includePaths: ['scss']})) // compile sass
+        .pipe(gulp.dest('css')) // write to css dir
+        .pipe(filter('**/*.css')) // filter the stream to ensure only CSS files passed.
+        .pipe(reload({stream:true})); // inject into browsers
 });
 
 // Default task to be run with `gulp`
