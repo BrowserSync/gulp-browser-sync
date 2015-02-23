@@ -24,5 +24,5 @@ gulp.task('lint', function () {
 
 // Default task to be run with `gulp`.
 gulp.task('default', ['lint', 'browser-sync'], function () {
-    gulp.watch('js/*.js', ['lint']).on("change", reload);
+    gulp.watch('js/*.js', ['lint']).on('change', reload);
 });
