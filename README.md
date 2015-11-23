@@ -1,6 +1,6 @@
 #Browsersync + Gulp
 
-> How to use the [BrowserSync](https://github.com/shakyShane/browser-sync) module with gulp.
+> How to use the [Browsersync](https://github.com/shakyShane/browser-sync) module with gulp.
 
 Follow [@browserSync](http://www.twitter.com/browserSync) for news & updates.
 
