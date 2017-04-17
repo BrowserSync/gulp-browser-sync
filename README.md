@@ -1,19 +1,19 @@
-#Browsersync + Gulp
+# Browsersync + Gulp
 
 > How to use the [Browsersync](https://github.com/shakyShane/browser-sync) module with gulp.
 
 Follow [@browserSync](http://www.twitter.com/browserSync) for news & updates.
 
-##About
+## About
 
 For a full list of features, please visit [https://github.com/shakyShane/browser-sync](https://github.com/shakyShane/browser-sync)
 
-##Usage
+## Usage
 
 Please see the official [Browsersync + Gulp Documentation](http://www.browsersync.io/docs/gulp/) for details. (if you want to see the old examples,
 which may no longer be supported, checkout the readme.old.md file)
 
-##Support
+## Support
 If you've found Browsersync to be useful and would like to contribute to its continued development & support, please feel free to send a donation of any size - it would be greatly appreciated!
 
 [![Support via Gittip](https://rawgithub.com/chris---/Donation-Badges/master/gittip.jpeg)](https://www.gittip.com/shakyshane)
